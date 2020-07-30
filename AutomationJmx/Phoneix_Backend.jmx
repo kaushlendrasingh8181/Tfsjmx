@@ -1892,10 +1892,92 @@ AssertionResult.setFailure(true);
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Student Login Controller" enabled="true">
-          <stringProp name="IncludeController.includepath">/home/sahil/Desktop/Gems/Jmeter/PhoenixAutomation/AutomationJmx/LoginRequest/Login Request.jmx</stringProp>
-        </IncludeController>
-        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Login Controller" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login Request" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="grant_type" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">password</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">grant_type</stringProp>
+                  <stringProp name="HTTPArgument.content_type">x-www-form-urlencoded</stringProp>
+                </elementProp>
+                <elementProp name="username" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">admin</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">username</stringProp>
+                  <stringProp name="HTTPArgument.content_type">x-www-form-urlencoded</stringProp>
+                </elementProp>
+                <elementProp name="password" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">Pa$$word@123</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">password</stringProp>
+                  <stringProp name="HTTPArgument.content_type">x-www-form-urlencoded</stringProp>
+                </elementProp>
+                <elementProp name="scope" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">Student.M Enquiry.M Config.M Withdrawal.M</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">scope</stringProp>
+                  <stringProp name="HTTPArgument.content_type">x-www-form-urlencoded</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">uatphoenix.gemseducation.com</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">phoenixidentityserver/connect/token</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
+              <collectionProp name="AuthManager.auth_list">
+                <elementProp name="" elementType="Authorization">
+                  <stringProp name="Authorization.url">https://uatphoenix.gemseducation.com/phoenixidentityserver/connect/token</stringProp>
+                  <stringProp name="Authorization.username">PostmanClient</stringProp>
+                  <stringProp name="Authorization.password">PostmanClient</stringProp>
+                  <stringProp name="Authorization.domain"></stringProp>
+                  <stringProp name="Authorization.realm"></stringProp>
+                  <stringProp name="Authorization.mechanism">BASIC_DIGEST</stringProp>
+                </elementProp>
+              </collectionProp>
+            </AuthManager>
+            <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="false">
+              <stringProp name="BeanShellAssertion.query">String Response = prev.getResponseDataAsString();
+log.info(&quot;***********&quot; + Response)
+
+${__setProperty(access_token, ${token})};</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.access_token</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">Not_found</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
         <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Student Controller" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">false</boolProp>
@@ -12865,7 +12947,7 @@ log.info (&quot;The example answer is &quot; + jsonString);
                 </ResponseAssertion>
                 <hashTree/>
                 <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="csvDataSetforNegativeCases" enabled="true">
-                  <stringProp name="filename">/home/sahil/Desktop/Gems/Jmeter/csv_sheet/GatePass/GatePassByIDNegativeCases.csv</stringProp>
+                  <stringProp name="filename">${CONFIG_PATH}/csv_sheet/GatePass/GatePassByIDNegativeCases.csv</stringProp>
                   <stringProp name="fileEncoding"></stringProp>
                   <stringProp name="variableNames">GatePassById</stringProp>
                   <boolProp name="ignoreFirstLine">true</boolProp>
