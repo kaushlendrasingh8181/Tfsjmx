@@ -15346,7 +15346,7 @@ for (name1 in eqm_applfirstname)
               </hashTree>
             </hashTree>
           </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Create Enquiry" enabled="true"/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Create Enquiry" enabled="false"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostRequestForCreateEnquiry" enabled="true">
               <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
@@ -15458,256 +15458,6 @@ AssertionResult.setFailure(true);
               <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/${enquiryIdFromResponse}</stringProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="49586">200</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.custom_message"></stringProp>
-                <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-              <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
-                <stringProp name="scriptLanguage">groovy</stringProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">import groovy.json.JsonSlurper 
-import java.util.Date
-
-def jsonSlurper = new JsonSlurper();
-
-def response = jsonSlurper.parseText(prev.getResponseDataAsString());
-
-String responseCodeMessage = response.responseCode.toString();
-
-if (responseCodeMessage.equals(&quot;success&quot;))
-{
-	AssertionResult.setFailureMessage(&quot;Pass&quot;);
-    	AssertionResult.setFailure(false); 
-}
-else
-{
-AssertionResult.setFailure(true);
-}
-
- </stringProp>
-              </JSR223Assertion>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
-                <stringProp name="JSONPostProcessor.referenceNames">AcdIdFromPostResponse;GradeIdFromPostResponse;ShiftIdFromResponse;StreamIdfromResponse;EqsIdFromResponse</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.eqsAcdId;$.result.eqsGrdId;$.result.eqsShfId;$.result.eqsStmId;$.result.eqsId</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers">1;1;1;1;1</stringProp>
-                <stringProp name="JSONPostProcessor.defaultValues">NOT_Found;NOT_Found;NOT_Found;NOT_Found;NOT_Found;</stringProp>
-                <stringProp name="Scope.variable"></stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-            </hashTree>
-          </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PreviousSchool " enabled="false"/>
-          <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostRequestForPreviousSchool" enabled="true">
-              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">{&#xd;
-  &quot;epsEqmEnqId&quot;: ${enquiryIdFromResponse},&#xd;
-  &quot;epsId&quot;: 0,&#xd;
-  &quot;schCity&quot;: &quot;string&quot;,&#xd;
-  &quot;schCountry&quot;: &quot;string&quot;,&#xd;
-  &quot;schId&quot;: &quot;string&quot;,&#xd;
-  &quot;schName&quot;: &quot;string&quot;,&#xd;
-  &quot;schHead&quot;: &quot;string&quot;,&#xd;
-  &quot;schFeeId&quot;: &quot;string&quot;,&#xd;
-  &quot;schGrade&quot;: &quot;string&quot;,&#xd;
-  &quot;schLearnIns&quot;: &quot;string&quot;,&#xd;
-  &quot;schAddr&quot;: &quot;string&quot;,&#xd;
-  &quot;schCurr&quot;: 0,&#xd;
-  &quot;schPhone&quot;: &quot;string&quot;,&#xd;
-  &quot;schFax&quot;: &quot;string&quot;,&#xd;
-  &quot;schFromdt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
-  &quot;schTodt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
-  &quot;schType&quot;: &quot;string&quot;,&#xd;
-  &quot;epsbGemsSchool&quot;: true&#xd;
-}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/qa_microservicestudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
-              <stringProp name="HTTPSampler.method">POST</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="49586">200</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.custom_message"></stringProp>
-                <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
-                <stringProp name="JSONPostProcessor.referenceNames">enquiryIdFromResponse</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$.result</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                <stringProp name="JSONPostProcessor.defaultValues">NOT_Found</stringProp>
-                <stringProp name="Scope.variable"></stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-              <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
-                <stringProp name="scriptLanguage">groovy</stringProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">import groovy.json.JsonSlurper 
-import java.util.Date
-
-def jsonSlurper = new JsonSlurper();
-
-def response = jsonSlurper.parseText(prev.getResponseDataAsString());
-
-String responseCodeMessage = response.responseCode.toString();
-
-if (responseCodeMessage.equals(&quot;success&quot;))
-{
-	AssertionResult.setFailureMessage(&quot;Pass&quot;);
-    	AssertionResult.setFailure(false); 
-}
-else
-{
-AssertionResult.setFailure(true);
-}
-
- </stringProp>
-              </JSR223Assertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateRequestForPreviousSchool" enabled="true">
-              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">{&#xd;
-  &quot;epsEqmEnqId&quot;*: 0,&#xd;
-  &quot;epsId&quot;: 0,&#xd;
-  &quot;schCity&quot;: &quot;string&quot;,&#xd;
-  &quot;schCountry&quot;: &quot;string&quot;,&#xd;
-  &quot;schId&quot;: &quot;string&quot;,&#xd;
-  &quot;schName&quot;: &quot;string&quot;,&#xd;
-  &quot;schHead&quot;: &quot;string&quot;,&#xd;
-  &quot;schFeeId&quot;: &quot;string&quot;,&#xd;
-  &quot;schGrade&quot;: &quot;string&quot;,&#xd;
-  &quot;schLearnIns&quot;: &quot;string&quot;,&#xd;
-  &quot;schAddr&quot;: &quot;string&quot;,&#xd;
-  &quot;schCurr&quot;: 0,&#xd;
-  &quot;schPhone&quot;: &quot;string&quot;,&#xd;
-  &quot;schFax&quot;: &quot;string&quot;,&#xd;
-  &quot;schFromdt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
-  &quot;schTodt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
-  &quot;schType&quot;: &quot;string&quot;,&#xd;
-  &quot;epsbGemsSchool&quot;: true&#xd;
-}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/qa_microservicestudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
-              <stringProp name="HTTPSampler.method">PUT</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-                <collectionProp name="Asserion.test_strings">
-                  <stringProp name="49586">200</stringProp>
-                </collectionProp>
-                <stringProp name="Assertion.custom_message"></stringProp>
-                <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-                <boolProp name="Assertion.assume_success">false</boolProp>
-                <intProp name="Assertion.test_type">16</intProp>
-              </ResponseAssertion>
-              <hashTree/>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
-                <stringProp name="JSONPostProcessor.referenceNames">enquiryIdFromResponse</stringProp>
-                <stringProp name="JSONPostProcessor.jsonPathExprs">$.result</stringProp>
-                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
-                <stringProp name="JSONPostProcessor.defaultValues">NOT_Found</stringProp>
-                <stringProp name="Scope.variable"></stringProp>
-              </JSONPostProcessor>
-              <hashTree/>
-              <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
-                <stringProp name="scriptLanguage">groovy</stringProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">import groovy.json.JsonSlurper 
-import java.util.Date
-
-def jsonSlurper = new JsonSlurper();
-
-def response = jsonSlurper.parseText(prev.getResponseDataAsString());
-
-String responseCodeMessage = response.responseCode.toString();
-
-if (responseCodeMessage.equals(&quot;success&quot;))
-{
-	AssertionResult.setFailureMessage(&quot;Pass&quot;);
-    	AssertionResult.setFailure(false); 
-}
-else
-{
-AssertionResult.setFailure(true);
-}
-
- </stringProp>
-              </JSR223Assertion>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetEnquiryforPreviousSchool" enabled="true">
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-                <collectionProp name="Arguments.arguments"/>
-              </elementProp>
-              <stringProp name="HTTPSampler.domain"></stringProp>
-              <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.protocol"></stringProp>
-              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/qa_microservicestudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -16138,7 +15888,7 @@ AssertionResult.setFailure(true);
       &quot;folEnqId&quot; : &quot;${enquiryIdFromResponse}&quot;,&#xd;
       &quot;folEqsId&quot; : &quot;${EqsIdFromResponse}&quot;,&#xd;
       &quot;folUserId&quot; : &quot;${usrIdEnquiry}&quot;,&#xd;
-      &quot;folMode&quot; : &quot;${folMode}&quot;&#xd;
+      &quot;folMode&quot; : &quot;${folMode}&quot;,&#xd;
       &quot;folFollUpDate&quot;:&quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ssX)}&quot;,&#xd;
   &quot;folAlertDays&quot;: ${folAlertDays},&#xd;
   &quot;folRemarks&quot;: &quot;stundent waiting test &quot;,&#xd;
@@ -16272,16 +16022,7 @@ def jsonSlurper = new JsonSlurper();
 
 def response = jsonSlurper.parseText(prev.getResponseDataAsString());
 
-String nullCheck = response.result.toString();
 
-if (!nullCheck.isEmpty())
-{
-	AssertionResult.setFailureMessage(&quot;Pass&quot;);
-    	AssertionResult.setFailure(true); 
-}
-else
-{
-AssertionResult.setFailure(false);
 }
 
  </stringProp>
@@ -16536,6 +16277,71 @@ AssertionResult.setFailure(true);
 
  </stringProp>
                 </JSR223Assertion>
+                <hashTree/>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetEnquiry in ManageEnquiry" enabled="true">
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                  <collectionProp name="Arguments.arguments"/>
+                </elementProp>
+                <stringProp name="HTTPSampler.domain"></stringProp>
+                <stringProp name="HTTPSampler.port"></stringProp>
+                <stringProp name="HTTPSampler.protocol"></stringProp>
+                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/${enquiryIdFromResponse}</stringProp>
+                <stringProp name="HTTPSampler.method">GET</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="49586">200</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.custom_message"></stringProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">16</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+                <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                  <stringProp name="scriptLanguage">groovy</stringProp>
+                  <stringProp name="parameters"></stringProp>
+                  <stringProp name="filename"></stringProp>
+                  <stringProp name="cacheKey">true</stringProp>
+                  <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                </JSR223Assertion>
+                <hashTree/>
+                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                  <stringProp name="JSONPostProcessor.referenceNames">AcdIdFromPostResponse;GradeIdFromPostResponse;ShiftIdFromResponse;StreamIdfromResponse;EqsIdFromResponse</stringProp>
+                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.eqsAcdId;$.result.eqsGrdId;$.result.eqsShfId;$.result.eqsStmId;$.result.eqsId</stringProp>
+                  <stringProp name="JSONPostProcessor.match_numbers">1;1;1;1;1</stringProp>
+                  <stringProp name="JSONPostProcessor.defaultValues">NOT_Found;NOT_Found;NOT_Found;NOT_Found;NOT_Found;</stringProp>
+                  <stringProp name="Scope.variable"></stringProp>
+                </JSONPostProcessor>
                 <hashTree/>
               </hashTree>
             </hashTree>
@@ -16872,6 +16678,35 @@ AssertionResult.setFailure(true);
  </stringProp>
                   </JSR223Assertion>
                   <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
                 </hashTree>
               </hashTree>
               <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Registration Enquiry Controller" enabled="true"/>
@@ -16973,6 +16808,35 @@ AssertionResult.setFailure(true);
  </stringProp>
                   </JSR223Assertion>
                   <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
                 </hashTree>
               </hashTree>
               <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Screening Enquiry Controller" enabled="true"/>
@@ -16986,7 +16850,7 @@ AssertionResult.setFailure(true);
                         <stringProp name="Argument.value">{  &#xd;
    &quot;eqmEnqid&quot;: ${enquiryIdFromResponse},&#xd;
    &quot;eqS_ID&quot;: ${EqsIdFromResponse},&#xd;
-   &quot;apR_ID&quot;: 1,&#xd;
+   &quot;apR_ID&quot;: ${enquiryScreeningApr_id},&#xd;
    &quot;apR_DISABLE&quot;: true,&#xd;
    &quot;chK_PRINT&quot;: true,&#xd;
    &quot;date&quot;: &quot;${enquiryDateResponseManageEnquiry}&quot;,&#xd;
@@ -17053,6 +16917,35 @@ AssertionResult.setFailure(true);
  </stringProp>
                   </JSR223Assertion>
                   <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
                 </hashTree>
               </hashTree>
               <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Approval Enquiry Controller" enabled="true"/>
@@ -17066,7 +16959,7 @@ AssertionResult.setFailure(true);
                         <stringProp name="Argument.value">{  &#xd;
    &quot;eqmEnqid&quot;: ${enquiryIdFromResponse},&#xd;
    &quot;eqS_ID&quot;: ${EqsIdFromResponse},&#xd;
-   &quot;apR_ID&quot;: 0,&#xd;
+   &quot;apR_ID&quot;: ${enquiryScreeningApr_id},&#xd;
    &quot;apR_DISABLE&quot;: true,&#xd;
    &quot;chK_PRINT&quot;: true,&#xd;
    &quot;date&quot;: &quot;${enquiryDateResponseManageEnquiry}&quot;,&#xd;
@@ -17128,6 +17021,35 @@ if (responseCodeMessage.equals(&quot;success&quot;))
 }
 else
 {
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
 AssertionResult.setFailure(true);
 }
 
@@ -17200,6 +17122,35 @@ if (responseCodeMessage.equals(&quot;success&quot;))
 }
 else
 {
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
 AssertionResult.setFailure(true);
 }
 
@@ -17285,6 +17236,35 @@ AssertionResult.setFailure(true);
  </stringProp>
                   </JSR223Assertion>
                   <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
                 </hashTree>
               </hashTree>
               <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Enquiry Enrollment Controller" enabled="true"/>
@@ -17302,9 +17282,9 @@ AssertionResult.setFailure(true);
    &quot;eqS_BSU_ID&quot; : &quot;${BsuIdResponseManageEnquiry}&quot;,&#xd;
     &quot;stU_DOJ&quot; : &quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ssX)}&quot;,&#xd;
    &quot;stU_MINDOJ&quot;: &quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ssX)}&quot;,&#xd;
-    &quot;stU_TFRTYPE&quot;: &quot;2&quot;,&#xd;
+    &quot;stU_TFRTYPE&quot;: &quot;NEW&quot;,&#xd;
    &quot;payplan&quot;: 2,&#xd;
-   &quot;prevresult&quot;: &quot;string&quot;&#xd;
+   &quot;prevresult&quot;: &quot;&quot;&#xd;
    }&#xd;
  &#xd;
   &#xd;
@@ -17365,6 +17345,35 @@ AssertionResult.setFailure(true);
  </stringProp>
                   </JSR223Assertion>
                   <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
                 </hashTree>
               </hashTree>
               <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Enquiry Document Enquiry Controller" enabled="true"/>
@@ -17379,10 +17388,10 @@ AssertionResult.setFailure(true);
    &quot;eqmEnqid&quot;: ${enquiryIdFromResponse},&#xd;
    &quot;eqS_ID&quot;: ${EqsIdFromResponse},&#xd;
    &quot;uploadId&quot;: &quot;1234&quot;,&#xd;
-   &quot;option&quot;: 0,&#xd;
-   &quot;eqmDocId&quot;: 22,&#xd;
+   &quot;option&quot;: ${enquiryDocumentOption},&#xd;
+   &quot;eqmDocId&quot;: ${enquiryDocumentId},&#xd;
    &quot;filename&quot;: &quot;Passsss&quot;,&#xd;
-   &quot;extension&quot;: &quot;aaaaa&quot;&#xd;
+   &quot;extension&quot;: &quot;Check&quot;&#xd;
    }&#xd;
 &#xd;
 </stringProp>
@@ -17442,6 +17451,1172 @@ AssertionResult.setFailure(true);
  </stringProp>
                   </JSR223Assertion>
                   <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+Integer resultCheck = response.result;
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (resultCheck&gt;0)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PreviousSchool " enabled="true"/>
+          <hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="PreviousSchoolNotGems Controller" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+              <boolProp name="TransactionController.parent">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Create Enquiry" enabled="true"/>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostRequestForCreateEnquiry" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{&#xd;
+	&quot;eqmApplfirstname&quot;   : &quot;${__RandomString(7,ABCDEFGHIJKLMNOP)}&quot;,&#xd;
+	&quot;eqmAppldob&quot;         : &quot;${ApplicantDob}&quot;,&#xd;
+	&quot;eqmRelId&quot;           : &quot;${ApplicantReligion}&quot;,&#xd;
+	&quot;eqmApplnationality&quot; : &quot;${ApplicanteqmApplnationality}&quot;,&#xd;
+	&quot;eqmApplpob&quot;         : &quot;${ApplicanteqmApplpob}&quot;,&#xd;
+	&quot;eqmApplcob&quot;         : &quot;${ApplicanteqmApplcob}&quot;,&#xd;
+	&quot;eqmApplgender&quot;      : &quot;${ApplicanteqmApplgender}&quot;,&#xd;
+     &quot;eqmEmgContact&quot;      : &quot;${__Random(1111111111,9999999999)}&quot;,&#xd;
+     &quot;eqmPrimarycontact&quot;  : &quot;${ApplicanteqmPrimarycontact}&quot;,&#xd;
+     &quot;eqmEnqtype&quot;         : &quot;${ApplicanteqmEnqtype}&quot;,&#xd;
+     &quot;eqmPrefcontact&quot;     : &quot;${ApplicanteqmPrefcontact}&quot;,&#xd;
+     &quot;eqmBPrevschoolgems&quot; : ${eqmBPrevschoolgems},&#xd;
+     &quot;eqmEnqdate&quot;         : &quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ssX)}&quot;,&#xd;
+     &quot;eqmBRcvsms&quot;         : ${ApplicanteqmBRcvsms},&#xd;
+     &quot;eqmBRcvmail&quot;        : ${ApplicanteqmBRcvmail},&#xd;
+     &quot;eqmBExstudent&quot;      : ${ApplicanteqmBExstudent},&#xd;
+     &quot;eqmBApplsibling&quot;    : ${ApplicanteqmBApplsibling},&#xd;
+     &quot;eqmBStaffgems&quot;      : ${ApplicanteqmBStaffgems},&#xd;
+     &quot;eqsAcyId&quot;           : ${ApplicanteqsAcyId},&#xd;
+     &quot;eqsAcdId&quot;           : ${enquiryAcdId},&#xd;
+     &quot;eqsApplno&quot;          : 863,&#xd;
+     &quot;eqsBsuId&quot;           : &quot;${enquiryBsuId}&quot;,&#xd;
+     &quot;eqsGrdId&quot;           : &quot;${ApplicanteqsGrdId}&quot;,&#xd;
+     &quot;eqsShfId&quot;           : ${ApplicanteqsShfId},&#xd;
+     &quot;eqsClmId&quot;           : ${AapplicanteqsClmId},&#xd;
+     &quot;eqsStmId&quot;           : ${ApplicanteqsStmId}&#xd;
+	&#xd;
+}&#xd;
+</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/API/Enquiry</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">enquiryIdFromResponse</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.result</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">NOT_Found</stringProp>
+                    <stringProp name="Scope.variable"></stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetEnquiry" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">AcdIdFromPostResponse;GradeIdFromPostResponse;ShiftIdFromResponse;StreamIdfromResponse;EqsIdFromResponse</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.eqsAcdId;$.result.eqsGrdId;$.result.eqsShfId;$.result.eqsStmId;$.result.eqsId</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1;1;1;1;1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">NOT_Found;NOT_Found;NOT_Found;NOT_Found;NOT_Found;</stringProp>
+                    <stringProp name="Scope.variable"></stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PreviousSchoolNotGems Controller" enabled="true"/>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostRequestForPreviousNotGemsSchool" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{&#xd;
+  &quot;epsEqmEnqId&quot;: ${enquiryIdFromResponse},&#xd;
+   &quot;schCity&quot;: &quot;string&quot;,&#xd;
+  &quot;schCountry&quot;: &quot;string&quot;,&#xd;
+  &quot;schId&quot;: &quot;string&quot;,&#xd;
+  &quot;schName&quot;: &quot;string&quot;,&#xd;
+  &quot;schHead&quot;: &quot;string&quot;,&#xd;
+  &quot;schFeeId&quot;: &quot;string&quot;,&#xd;
+  &quot;schGrade&quot;: &quot;string&quot;,&#xd;
+  &quot;schLearnIns&quot;: &quot;string&quot;,&#xd;
+  &quot;schAddr&quot;: &quot;string&quot;,&#xd;
+  &quot;schCurr&quot;: 1,&#xd;
+  &quot;schPhone&quot;: &quot;string&quot;,&#xd;
+  &quot;schFax&quot;: &quot;string&quot;,&#xd;
+  &quot;schFromdt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schTodt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schType&quot;: &quot;new&quot;,&#xd;
+  &quot;epsbGemsSchool&quot;: false&#xd;
+}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">previousSchoolIdFromResponse</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.result</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">NOT_Found</stringProp>
+                    <stringProp name="Scope.variable"></stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String resultCheck = response.result.toString();
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (!resultCheck.isEmpty())
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateRequestForPreviousNotGemsSchool" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{&#xd;
+  &quot;epsEqmEnqId&quot;: ${enquiryIdFromResponse},&#xd;
+  &quot;epsId&quot;:${previousSchoolIdFromResponse},&#xd;
+  &quot;schCity&quot;: &quot;string&quot;,&#xd;
+  &quot;schCountry&quot;: &quot;string&quot;,&#xd;
+  &quot;schId&quot;: &quot;string&quot;,&#xd;
+  &quot;schName&quot;: &quot;string&quot;,&#xd;
+  &quot;schHead&quot;: &quot;string&quot;,&#xd;
+  &quot;schFeeId&quot;: &quot;string&quot;,&#xd;
+  &quot;schGrade&quot;: &quot;string&quot;,&#xd;
+  &quot;schLearnIns&quot;: &quot;string&quot;,&#xd;
+  &quot;schAddr&quot;: &quot;string&quot;,&#xd;
+  &quot;schCurr&quot;: 1,&#xd;
+  &quot;schPhone&quot;: &quot;string&quot;,&#xd;
+  &quot;schFax&quot;: &quot;string&quot;,&#xd;
+  &quot;schFromdt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schTodt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schType&quot;: &quot;string&quot;,&#xd;
+  &quot;epsbGemsSchool&quot;: false&#xd;
+}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">PUT</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String fetchResponseEpsId = response.result.epsId.toString();
+
+log.info(&quot;value of result is &quot; + fetchResponseEpsId);
+if (fetchResponseEpsId.equals(&quot;${previousSchoolIdFromResponse}&quot;)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;wrongEpsId not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetEnquiryforPreviousNotGemsSchool" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="SizeCheckAssertionById" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+//log.info (&quot;Size of the list &quot; +  &quot; ********&quot; +  response );
+def epsIDRes = response.result.epsId;
+def mySet = epsIDRes.toSet();
+//String acdId = response.result.acdId.toString();
+//String firstName = response.result.eqmApplfirstname.toString();
+//String lastName = response.result.eqmAppllastname.toString();
+//String middleName = response.result.eqmApplmidname.toString();
+//Date date = ToDateTime(response.result.eqmAppldob.toString());
+
+log.info (&quot;Size of the list &quot; + epsIDRes.size() + &quot; ********&quot; +  epsIDRes );
+log.info (&quot;Size of the list &quot; + mySet.size() + &quot; ********&quot; +  mySet );
+
+//log.info (&quot;The Validation Enquiry Id is &quot; + enqId);
+//log.info (&quot; Enquiry First name is  &quot; + firstName);
+//log.info (&quot; Enquiry last name is  &quot; + lastName);
+//log.info (&quot; Enquiry Middle name is  &quot; + middleName);
+//log.info (&quot; Enquiry Dateof Birth is  &quot; + date);
+//int len = firstName.length();
+//log.info (&quot;Length of the string  &quot;+ len);
+//if (!enqId.equals(&apos;${getEnquiryById}&apos;)){
+//		AssertionResult.setFailureMessage(&quot;The gatePass Id is wrong&quot;);
+//	    	AssertionResult.setFailure(true); 
+//	}
+
+if (epsIDRes.size()==mySet.size())
+{
+	AssertionResult.setFailureMessage(&quot;Size of Both Id Matched&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ /* if(id[0].equals(null)){
+
+//|| bsuId.equalsIgnoreCase(&quot;&quot;)
+AssertionResult.setFailureMessage(&quot;NO ID Found&quot;);
+
+AssertionResult.setFailure(true);
+
+}
+
+
+if(id==null || id.equalsIgnoreCase(&quot;&quot;)){
+
+AssertionResult.setFailureMessage(&quot;NO ID Found&quot;);
+
+AssertionResult.setFailure(true);
+
+}
+
+else
+{
+AssertionResult.setFailure(false);
+}*/
+</stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="null check " enabled="false">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+def knownName = response.result.knownName;
+
+for (name in knownName)
+{ 
+	log.info( &quot; name  is &quot; + name);
+if (!name.isEmpty())
+{
+	AssertionResult.setFailureMessage(&quot;Name is Null&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Name is not null&quot;)
+AssertionResult.setFailure(true);
+}
+}
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="PreviousSchoolGemsController" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+              <boolProp name="TransactionController.parent">false</boolProp>
+            </TransactionController>
+            <hashTree>
+              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Create Enquiry" enabled="true"/>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostRequestForCreateEnquiry" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{&#xd;
+	&quot;eqmApplfirstname&quot;   : &quot;${__RandomString(7,ABCDEFGHIJKLMNOP)}&quot;,&#xd;
+	&quot;eqmAppldob&quot;         : &quot;${ApplicantDob}&quot;,&#xd;
+	&quot;eqmRelId&quot;           : &quot;${ApplicantReligion}&quot;,&#xd;
+	&quot;eqmApplnationality&quot; : &quot;${ApplicanteqmApplnationality}&quot;,&#xd;
+	&quot;eqmApplpob&quot;         : &quot;${ApplicanteqmApplpob}&quot;,&#xd;
+	&quot;eqmApplcob&quot;         : &quot;${ApplicanteqmApplcob}&quot;,&#xd;
+	&quot;eqmApplgender&quot;      : &quot;${ApplicanteqmApplgender}&quot;,&#xd;
+     &quot;eqmEmgContact&quot;      : &quot;${__Random(1111111111,9999999999)}&quot;,&#xd;
+     &quot;eqmPrimarycontact&quot;  : &quot;${ApplicanteqmPrimarycontact}&quot;,&#xd;
+     &quot;eqmEnqtype&quot;         : &quot;${ApplicanteqmEnqtype}&quot;,&#xd;
+     &quot;eqmPrefcontact&quot;     : &quot;${ApplicanteqmPrefcontact}&quot;,&#xd;
+     &quot;eqmBPrevschoolgems&quot; : ${eqmBPrevschoolgems},&#xd;
+     &quot;eqmEnqdate&quot;         : &quot;${__time(yyyy-MM-dd&apos;T&apos;hh:mm:ssX)}&quot;,&#xd;
+     &quot;eqmBRcvsms&quot;         : ${ApplicanteqmBRcvsms},&#xd;
+     &quot;eqmBRcvmail&quot;        : ${ApplicanteqmBRcvmail},&#xd;
+     &quot;eqmBExstudent&quot;      : ${ApplicanteqmBExstudent},&#xd;
+     &quot;eqmBApplsibling&quot;    : ${ApplicanteqmBApplsibling},&#xd;
+     &quot;eqmBStaffgems&quot;      : ${ApplicanteqmBStaffgems},&#xd;
+     &quot;eqsAcyId&quot;           : ${ApplicanteqsAcyId},&#xd;
+     &quot;eqsAcdId&quot;           : ${enquiryAcdId},&#xd;
+     &quot;eqsApplno&quot;          : 863,&#xd;
+     &quot;eqsBsuId&quot;           : &quot;${enquiryBsuId}&quot;,&#xd;
+     &quot;eqsGrdId&quot;           : &quot;${ApplicanteqsGrdId}&quot;,&#xd;
+     &quot;eqsShfId&quot;           : ${ApplicanteqsShfId},&#xd;
+     &quot;eqsClmId&quot;           : ${AapplicanteqsClmId},&#xd;
+     &quot;eqsStmId&quot;           : ${ApplicanteqsStmId}&#xd;
+	&#xd;
+}&#xd;
+</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/API/Enquiry</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">enquiryIdFromResponse</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.result</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">NOT_Found</stringProp>
+                    <stringProp name="Scope.variable"></stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetEnquiry" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">AcdIdFromPostResponse;GradeIdFromPostResponse;ShiftIdFromResponse;StreamIdfromResponse;EqsIdFromResponse</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.eqsAcdId;$.result.eqsGrdId;$.result.eqsShfId;$.result.eqsStmId;$.result.eqsId</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1;1;1;1;1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">NOT_Found;NOT_Found;NOT_Found;NOT_Found;NOT_Found;</stringProp>
+                    <stringProp name="Scope.variable"></stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PreviousSchoolGems Controller" enabled="true"/>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostRequestForPreviousGemsSchool" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{&#xd;
+  &quot;epsEqmEnqId&quot;: ${enquiryIdFromResponse},&#xd;
+   &quot;schCity&quot;: &quot;DUB&quot;,&#xd;
+  &quot;schCountry&quot;: &quot;UAE&quot;,&#xd;
+  &quot;schId&quot;: &quot;300001&quot;,&#xd;
+  &quot;schName&quot;: &quot;Gems&quot;,&#xd;
+  &quot;schHead&quot;: &quot;string&quot;,&#xd;
+  &quot;schFeeId&quot;: &quot;string&quot;,&#xd;
+  &quot;schGrade&quot;: &quot;string&quot;,&#xd;
+  &quot;schLearnIns&quot;: &quot;string&quot;,&#xd;
+  &quot;schAddr&quot;: &quot;string&quot;,&#xd;
+  &quot;schCurr&quot;: 1,&#xd;
+  &quot;schPhone&quot;: &quot;string&quot;,&#xd;
+  &quot;schFax&quot;: &quot;string&quot;,&#xd;
+  &quot;schFromdt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schTodt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schType&quot;: &quot;Current School&quot;,&#xd;
+  &quot;epsbGemsSchool&quot;: true&#xd;
+}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+                    <stringProp name="JSONPostProcessor.referenceNames">previousSchoolIdFromResponse</stringProp>
+                    <stringProp name="JSONPostProcessor.jsonPathExprs">$.result</stringProp>
+                    <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                    <stringProp name="JSONPostProcessor.defaultValues">NOT_Found</stringProp>
+                    <stringProp name="Scope.variable"></stringProp>
+                  </JSONPostProcessor>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String resultCheck = response.result.toString();
+
+log.info(&quot;value of result is &quot; + resultCheck);
+if (!resultCheck.isEmpty())
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Result not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UpdateRequestForPreviousGemsSchool" enabled="true">
+                  <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.value">{&#xd;
+  &quot;epsEqmEnqId&quot;: ${enquiryIdFromResponse},&#xd;
+  &quot;epsId&quot;:${previousSchoolIdFromResponse},&#xd;
+  &quot;schCity&quot;: &quot;${previousSchoolCity}&quot;,&#xd;
+  &quot;schCountry&quot;: &quot;${previousSchoolCountry}&quot;,&#xd;
+  &quot;schId&quot;: &quot;${previousSchoolId}&quot;,&#xd;
+  &quot;schName&quot;: &quot;${previousSchoolName}&quot;,&#xd;
+  &quot;schHead&quot;: &quot;string&quot;,&#xd;
+  &quot;schFeeId&quot;: &quot;12345&quot;,&#xd;
+  &quot;schGrade&quot;: &quot;${previousSchoolGradeId}&quot;,&#xd;
+  &quot;schLearnIns&quot;: &quot;string&quot;,&#xd;
+  &quot;schAddr&quot;: &quot;string&quot;,&#xd;
+  &quot;schCurr&quot;: 1,&#xd;
+  &quot;schPhone&quot;: &quot;string&quot;,&#xd;
+  &quot;schFax&quot;: &quot;string&quot;,&#xd;
+  &quot;schFromdt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schTodt&quot;: &quot;2020-07-18T15:39:33.270Z&quot;,&#xd;
+  &quot;schType&quot;: &quot;string&quot;,&#xd;
+  &quot;epsbGemsSchool&quot;: true&#xd;
+}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">PUT</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResultCheckForResponse" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String fetchResponseEpsId = response.result.epsId.toString();
+
+log.info(&quot;value of result is &quot; + fetchResponseEpsId);
+if (fetchResponseEpsId.equals(&quot;${previousSchoolIdFromResponse}&quot;)
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;wrongEpsId not saved &quot;)
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                </hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetEnquiryforPreviousGemsSchool" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                    <collectionProp name="Arguments.arguments"/>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol"></stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/phoenixMSStudent/api/Enquiry/PrevSchool/${enquiryIdFromResponse}</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="49586">200</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.custom_message"></stringProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="ResponseCodeMessageAssertion" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+String responseCodeMessage = response.responseCode.toString();
+
+if (responseCodeMessage.equals(&quot;success&quot;))
+{
+	AssertionResult.setFailureMessage(&quot;Pass&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="SizeCheckAssertionById" enabled="true">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+//log.info (&quot;Size of the list &quot; +  &quot; ********&quot; +  response );
+def epsIDRes = response.result.epsId;
+def mySet = epsIDRes.toSet();
+//String acdId = response.result.acdId.toString();
+//String firstName = response.result.eqmApplfirstname.toString();
+//String lastName = response.result.eqmAppllastname.toString();
+//String middleName = response.result.eqmApplmidname.toString();
+//Date date = ToDateTime(response.result.eqmAppldob.toString());
+
+log.info (&quot;Size of the list &quot; + epsIDRes.size() + &quot; ********&quot; +  epsIDRes );
+log.info (&quot;Size of the list &quot; + mySet.size() + &quot; ********&quot; +  mySet );
+
+//log.info (&quot;The Validation Enquiry Id is &quot; + enqId);
+//log.info (&quot; Enquiry First name is  &quot; + firstName);
+//log.info (&quot; Enquiry last name is  &quot; + lastName);
+//log.info (&quot; Enquiry Middle name is  &quot; + middleName);
+//log.info (&quot; Enquiry Dateof Birth is  &quot; + date);
+//int len = firstName.length();
+//log.info (&quot;Length of the string  &quot;+ len);
+//if (!enqId.equals(&apos;${getEnquiryById}&apos;)){
+//		AssertionResult.setFailureMessage(&quot;The gatePass Id is wrong&quot;);
+//	    	AssertionResult.setFailure(true); 
+//	}
+
+if (epsIDRes.size()==mySet.size())
+{
+	AssertionResult.setFailureMessage(&quot;Size of Both Id Matched&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+AssertionResult.setFailure(true);
+}
+
+ /* if(id[0].equals(null)){
+
+//|| bsuId.equalsIgnoreCase(&quot;&quot;)
+AssertionResult.setFailureMessage(&quot;NO ID Found&quot;);
+
+AssertionResult.setFailure(true);
+
+}
+
+
+if(id==null || id.equalsIgnoreCase(&quot;&quot;)){
+
+AssertionResult.setFailureMessage(&quot;NO ID Found&quot;);
+
+AssertionResult.setFailure(true);
+
+}
+
+else
+{
+AssertionResult.setFailure(false);
+}*/
+</stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
+                  <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="null check " enabled="false">
+                    <stringProp name="scriptLanguage">groovy</stringProp>
+                    <stringProp name="parameters"></stringProp>
+                    <stringProp name="filename"></stringProp>
+                    <stringProp name="cacheKey">true</stringProp>
+                    <stringProp name="script">import groovy.json.JsonSlurper 
+import java.util.Date
+
+def jsonSlurper = new JsonSlurper();
+
+def response = jsonSlurper.parseText(prev.getResponseDataAsString());
+
+def knownName = response.result.knownName;
+
+for (name in knownName)
+{ 
+	log.info( &quot; name  is &quot; + name);
+if (!name.isEmpty())
+{
+	AssertionResult.setFailureMessage(&quot;Name is Null&quot;);
+    	AssertionResult.setFailure(false); 
+}
+else
+{
+	AssertionResult.setFailureMessage(&quot;Name is not null&quot;)
+AssertionResult.setFailure(true);
+}
+}
+ </stringProp>
+                  </JSR223Assertion>
+                  <hashTree/>
                 </hashTree>
               </hashTree>
             </hashTree>
@@ -17449,7 +18624,7 @@ AssertionResult.setFailure(true);
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Enquiry CSv Data Set" enabled="true">
             <stringProp name="filename">${CONFIG_PATH}/csv_sheet/EnquiryPass/Enquiry.csv</stringProp>
             <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="variableNames">getEnquiryById,enquiryBsuId,enquiryAcdId,enquiryApplicantName,Enquiryenq_No,Enquiryacc_No,Enquirycontact_Me,Enquirystatus,Enquiryfollow_Up_Status,Enquiryenq_Condition,Enquirypaid,Enquiryprev_School_GEMS,Enquirysen,EnquirygemS_Staff,Enquiryex_Student,Enquirysiblingt,ApplicantDob,ApplicantReligion,ApplicanteqmApplnationality,ApplicanteqmApplpob,ApplicanteqmApplcob,ApplicanteqmApplgender,ApplicanteqmPrimarycontact,ApplicanteqmEnqtype,ApplicanteqmPrefcontact,eqmBPrevschoolgems,ApplicanteqmBRcvsms,ApplicanteqmBRcvmail,ApplicanteqmBExstudent,ApplicanteqmBApplsibling,ApplicanteqmBStaffgems,ApplicanteqsAcyId,ApplicanteqsGrdId,ApplicanteqsShfId,AapplicanteqsClmId,ApplicanteqsStmId,ChangeAcdId,ChangeGradeId,ChangeShiftId,ChangeStream,TransferBsuId,TransfereqS_ACY_ID,JoinDocumentId,usrIdEnquiry,folMode,folAlertDays</stringProp>
+            <stringProp name="variableNames">getEnquiryById,enquiryBsuId,enquiryAcdId,enquiryApplicantName,Enquiryenq_No,Enquiryacc_No,Enquirycontact_Me,Enquirystatus,Enquiryfollow_Up_Status,Enquiryenq_Condition,Enquirypaid,Enquiryprev_School_GEMS,Enquirysen,EnquirygemS_Staff,Enquiryex_Student,Enquirysiblingt,ApplicantDob,ApplicantReligion,ApplicanteqmApplnationality,ApplicanteqmApplpob,ApplicanteqmApplcob,ApplicanteqmApplgender,ApplicanteqmPrimarycontact,ApplicanteqmEnqtype,ApplicanteqmPrefcontact,eqmBPrevschoolgems,ApplicanteqmBRcvsms,ApplicanteqmBRcvmail,ApplicanteqmBExstudent,ApplicanteqmBApplsibling,ApplicanteqmBStaffgems,ApplicanteqsAcyId,ApplicanteqsGrdId,ApplicanteqsShfId,AapplicanteqsClmId,ApplicanteqsStmId,ChangeAcdId,ChangeGradeId,ChangeShiftId,ChangeStream,TransferBsuId,TransfereqS_ACY_ID,JoinDocumentId,usrIdEnquiry,folMode,folAlertDays,enquiryDocumentOption,enquiryScreeningApr_id,enquiryDocumentId,previousSchoolCity,previousSchoolCountry,previousSchoolId,previousSchoolName,previousSchoolGradeId</stringProp>
             <boolProp name="ignoreFirstLine">true</boolProp>
             <stringProp name="delimiter">,</stringProp>
             <boolProp name="quotedData">false</boolProp>
